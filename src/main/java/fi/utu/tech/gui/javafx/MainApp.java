@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application{
     Stage stage;
 
-    
+
 
     public void start(Stage stage) { //Throws exception
         this.stage = stage;
