@@ -32,10 +32,10 @@
          </padding>
          <children>
             <Label text="Täytä pelaajien nimet:" GridPane.rowIndex="1" />
-            <Label text="Punainen:" GridPane.rowIndex="2" />
-            <Label text="Sininen:" GridPane.rowIndex="3" />
-            <Label text="Vihreä:" GridPane.rowIndex="4" />
-            <Label text="Keltainen:" GridPane.rowIndex="5" />
+            <Label text="Punainen:"  GridPane.rowIndex="2" />
+            <Label text="Sininen:"  GridPane.rowIndex="3" />
+            <Label text="Vihreä:"  GridPane.rowIndex="4" />
+            <Label text="Keltainen:"  GridPane.rowIndex="5" />
             <TextField fx:id = "punainen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id = "sininen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id = "vihrea" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -50,7 +50,7 @@
            <padding>
                <Insets bottom="50.0" left="100.0" right="100.0" top="50.0" />
            </padding>
-            <Label  fx:id = "ohje" text=""/>
+            <Label  fx:id = "ohje1" text=" "/>
             <Button  fx:id = "valmis" mnemonicParsing="false" onAction="#valmisBtnPressed" text="Valmis" >
             </Button>
        </HBox>

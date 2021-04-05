@@ -48,6 +48,10 @@ public class PelaajatController {
 
     public GameBoard gb;
 
+    public PelaajatController(){
+
+    }
+
     @FXML
     void valmisBtnPressed(ActionEvent event) {
         //luodaan uusi pelimanageri tietojen tallentamiseen
@@ -56,25 +60,26 @@ public class PelaajatController {
         int pelaajat = 0; //apumuuttuja pelaajamäärän tarkistamiseen
         //Talletetaan pelaajien nimet pelaajaolioihin, jotka PeliManageriin
         if(!punainen.getText().equals("")){
-            Pelaaja pun = new Pelaaja(punainen.getText());
+
+            Pelaaja pun = new Pelaaja(punainen.getText(), u, "pun");
             u.setPelaaja(0,pun);
             pelaajat++;
         }else{u.setPelaaja(0,null);}
 
         if(!sininen.getText().equals("")){
-            Pelaaja sin = new Pelaaja(sininen.getText());
+            Pelaaja sin = new Pelaaja(sininen.getText(), u, "sin");
             u.setPelaaja(1,sin);
             pelaajat++;
         }else{u.setPelaaja(1,null);}
 
         if(!vihrea.getText().equals("")){
-            Pelaaja vih = new Pelaaja(vihrea.getText());
+            Pelaaja vih = new Pelaaja(vihrea.getText(), u, "vih");
             u.setPelaaja(2,vih);
             pelaajat++;
         }else{u.setPelaaja(2,null);}
 
         if(!keltainen.getText().equals("")){
-            Pelaaja kel = new Pelaaja(keltainen.getText());
+            Pelaaja kel = new Pelaaja(keltainen.getText(), u, "kel");
             u.setPelaaja(3,kel);
             pelaajat++;
         }else{u.setPelaaja(3,null);}

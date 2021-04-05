@@ -21,8 +21,11 @@ public class MainApp extends Application{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("nimet.fxml")
         );
-
         Parent root = loader.load();
+        PelaajatController controller = new PelaajatController();
+        loader.setController(controller);
+
+
         Scene scene = new Scene(root);
         stage.setWidth(630);
         stage.setHeight(700);

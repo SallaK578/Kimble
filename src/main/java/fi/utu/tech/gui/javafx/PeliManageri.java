@@ -9,7 +9,7 @@ public class PeliManageri {
 
     Random noppa = new Random();
     //tallennetaan pelaajat -> indeksi 0=punainen, 1=sininen, 2=vihreä, 3=keltainen
-    ArrayList<Pelaaja> pelaajaLista = new ArrayList<Pelaaja>(4);
+    ArrayList<Pelaaja> pelaajaLista = new ArrayList<Pelaaja>();
 
     HashMap<Integer, int[]> koordinaatit = new HashMap<>(28);
     public PeliManageri(){
@@ -22,9 +22,12 @@ public class PeliManageri {
     public Pelaaja getPelaaja(int indeksi) {
         return pelaajaLista.get(indeksi);
     }
+    public ArrayList<Pelaaja> getpelaajaLista(){
+        return pelaajaLista;
+    }
 
     public void setPelaaja(int indeksi, Pelaaja pelaaja) {
-        pelaajaLista.set(indeksi, pelaaja);
+        pelaajaLista.add(indeksi, pelaaja);
 }
 
     public int[] getCoordinates(int ruutu){

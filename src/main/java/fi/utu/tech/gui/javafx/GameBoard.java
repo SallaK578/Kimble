@@ -319,7 +319,17 @@ public class GameBoard {
     public PeliManageri u;
 
     public GameBoard(PeliManageri u){
+
         this.u = u;
+
+        //nappuloiden asetus
+        for(int i= 0; i<4;i++){
+            if(u.getpelaajaLista().get(i) != null){
+
+            }
+
+        }
+
     }
 
     @FXML
