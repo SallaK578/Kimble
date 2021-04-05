@@ -16,14 +16,16 @@ public class MainApp extends Application{
     
 
     public void start(Stage stage) throws IOException {
+        this.stage = stage;
+        stage.setTitle("Kimble");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("nimet.fxml")
         );
 
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
-        this.stage = stage;
-        stage.setTitle("Kimble");
+        stage.setWidth(630);
+        stage.setHeight(700);
         stage.setScene(scene);
         stage.show(); // Stage näkyväksi
         System.out.println("Aloitus scene");
