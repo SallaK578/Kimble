@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -93,19 +94,26 @@ public class PelaajatController {
             initCoord();
             //Ladataan GameBoard näkymä
             try {
+
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
-                gb = new GameBoard(u);
+                //gb = new GameBoard();
                 //this.u = u;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("kimble.fxml")
                 );
-                loader.setController(gb);
+
+
                 Parent root = loader.load();
+
+                GameBoard controller = loader.getController();
+                controller.setPeliManageri(u);
+                loader.setController(controller);
 
 
                 //BorderPane gbPane = loader.load();
 
                 Scene scene = new Scene(root);
+                scene.getStylesheets().addAll(this.getClass().getResource("styles.css").toExternalForm());//asetetaan tyyli
 
                 stage.setScene(scene);
                 stage.show();

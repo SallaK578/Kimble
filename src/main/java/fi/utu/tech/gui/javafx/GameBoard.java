@@ -309,6 +309,9 @@ public class GameBoard {
     @FXML
     private Label silmaluku;
 
+    @FXML
+    private Button aloita;
+
     // Normiruuduilla (ei kotipesät/maalialueet) sijaitsevat nappulat talletetaan tänne
     //Tällä tarkastetaan, onko ruutu jo varattu, tapahtuuko syöminen
     // Nappuloita liikutettaessa, tulee vanha sijainti luonnollisesti poistaa
@@ -316,19 +319,13 @@ public class GameBoard {
 
     private int vuoroLaskuri;
 
-    public PeliManageri u;
+    public PeliManageri pm;
 
-    public GameBoard(PeliManageri u){
+    public GameBoard(){
 
-        this.u = u;
 
-        //nappuloiden asetus
-        for(int i= 0; i<4;i++){
-            if(u.getpelaajaLista().get(i) != null){
 
-            }
 
-        }
 
     }
 
@@ -338,19 +335,37 @@ public class GameBoard {
 
     }
     @FXML
+    void aloitaPeli(ActionEvent event) {
+        //nappuloiden asetus
+        for(int i= 0; i<4;i++){
+            if(pm.getpelaajaLista().get(i) != null){
+                for(int j=0; j<4;j++){
+                    Nappula nappula = pm.getpelaajaLista().get(i).getNappulat()[j];
+                    nappula.getNappi().setOnAction(this::liikutaBtn);
+                    gridPane.add(nappula.getNappi(), nappula.getBtnX(), nappula.getBtnY());
+                }
+            }
+
+        }
+        //poistetaan aloitusnappi
+        gridPane.getChildren().remove(this.aloita);
+    }
+    @FXML
     //Noppaa heitetään
     void heitaNoppaa(ActionEvent event) {
 
     }
     public void initialize(){
         //testiä vaan
-        System.out.println(u.getCoordinates(1)[0]+" " +u.getCoordinates(1)[1]);
+        //System.out.println(pm.getCoordinates(1)[0]+" " +pm.getCoordinates(1)[1]);
+        //gridPane = scene.
+        //nappuloiden asetus
 
     }
+
     public void setPeliManageri(PeliManageri u){
-        this.u = u;
+        this.pm = u;
     }
-
 
 }
 

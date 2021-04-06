@@ -9,6 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/*koodirivien laskenta:
+* git log --after="yyyy-mm-dd" --before="yyyy-mm-dd" --author="nimi" --shortstat -- src | grep -E "fil(e|es) changed"
+* | awk '{files+=$1; inserted+=$4; deleted+=$6} END {print "files changed: ", files, "lines inserted: ", inserted, "lines deleted: ", deleted }'
+* */
 
 public class MainApp extends Application{
     Stage stage;
