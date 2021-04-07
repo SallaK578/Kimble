@@ -331,17 +331,37 @@ public class GameBoard {
         }
 
     }
-
-    @FXML
-    //liikutettavan nappulan valinta
-    void liikutaBtn(ActionEvent event) {
-
-    }
+    
+    
+    // silmäluku talletetaan tähän
+    int nopanTulos;
+    nopanTulos = heitaNoppaa(event, nopanTulos);
+    
+    
     @FXML
     //Noppaa heitetään
-    void heitaNoppaa(ActionEvent event) {
-
+    public int heitaNoppaa(ActionEvent event, int silmaLuku) {
+    	
+    	silmaLuku = u.roll();
+    	return silmaLuku;
+    	// uuden vuoron tarkistus jonnekin muualle?
     }
+    
+    @FXML
+    //liikutettavan nappulan valinta
+    void liikutaBtn(ActionEvent event, int askeleet){
+    	
+    	// tarkistus voiko kotipesästä liikuttaa
+    	boolean kotipesasta = false;
+    	if (nopanTulos == 6) {
+    		kotipesasta = true;
+    	}
+    	
+    	
+    	
+    	
+    }
+
     public void initialize(){
         //testiä vaan
         System.out.println(u.getCoordinates(1)[0]+" " +u.getCoordinates(1)[1]);
