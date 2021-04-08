@@ -15,6 +15,15 @@ public class PeliManageri {
     public PeliManageri(){
 
     }
+    public boolean kotipesatTaynna(){
+        for(int i =0; i<4; i++){
+            if(!pelaajaLista.get(i).kotipesaTaysi()) {
+                return false;
+            }
+        }
+        return true;
+
+    }
     public int roll() {
         return noppa.nextInt(6)+1;
     }

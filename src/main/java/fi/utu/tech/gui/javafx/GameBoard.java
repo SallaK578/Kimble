@@ -63,9 +63,48 @@ public class GameBoard {
 
     @FXML
     //liikutettavan nappulan valinta
+
     void liikutaBtn(ActionEvent event) {
 
-        System.out.println("Nappi toimii" );
+        if(onkoKotip((Button)event.getSource()) && nopanTulos ==6){
+            System.out.println("Nappi toimii" );
+            gridPane.getChildren().remove((Button)event.getSource());
+            switch(vuoroLaskuri){
+                case 0:
+                    System.out.println("case0 toimii");
+                    Nappula nappula =liikutettava((Button)event.getSource());
+                    nappula.setBtnCoordinates(1,7);
+                    System.out.println(nappula.getBtnX());
+                    gridPane.add(nappula.getNappi(), 1, 7);
+                     break;
+                case 1:
+                    System.out.println("case1 toimii");
+                    Nappula nappula1 =liikutettava((Button)event.getSource());
+                    nappula1.setBtnCoordinates(10,1);
+                    gridPane.add(nappula1.getNappi(), 10, 1);
+                    break;
+                case 2:
+                    System.out.println("case2 toimii");
+                    Nappula nappula2 =liikutettava((Button)event.getSource());
+                    nappula2.setBtnCoordinates(17,7);
+                    gridPane.add(nappula2.getNappi(), 17, 7);
+                    break;
+                case 3:
+                    System.out.println("case3 toimii");
+                    Nappula nappula3 =liikutettava((Button)event.getSource());
+                    nappula3.setBtnCoordinates(7,17);
+                    gridPane.add(nappula3.getNappi(),7, 17);
+                    break;
+
+
+            }
+
+
+        }
+
+
+
+
 
     }
     @FXML
@@ -76,6 +115,7 @@ public class GameBoard {
                 for(int j=0; j<4;j++){
                     Nappula nappula = pm.getpelaajaLista().get(i).getNappulat()[j];
                     nappula.getNappi().setOnAction(this::liikutaBtn);
+                    nappula.getNappi().setDisable(true);
                     gridPane.add(nappula.getNappi(), nappula.getBtnX(), nappula.getBtnY());
 
                 }
@@ -85,6 +125,7 @@ public class GameBoard {
         //poistetaan aloitusnappi
         gridPane.getChildren().remove(this.aloita);
         noppa.setOnAction(this::heitaNoppaa);
+        vuoroLaskuri = 0;
         pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
         ohjeLabel.setText(getOhje(1));
     }
@@ -94,12 +135,43 @@ public class GameBoard {
     void heitaNoppaa(ActionEvent event) {
         nopanTulos = pm.roll();
         silmaluku.setText(Integer.toString(nopanTulos));
-        
+        if(pm.getPelaaja(vuoroLaskuri).kotipesaTaysi() && nopanTulos == 6) {
+            ohjeLabel.setText(getOhje(3));
+            pm.getPelaaja(vuoroLaskuri).disableNappulat(false);
+        }else{
+            if(vuoroLaskuri!=3) {
+                vuoroLaskuri++;
+            }else{
+                vuoroLaskuri = 0;
+            }
+                pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
+                ohjeLabel.setText(getOhje(1));
+
+            }
+
+
     }
+    //&& pm.getPelaaja(vuoroLaskuri).kotipesaTyhja() != true
     public void initialize(){
 
 
 
+    }
+    public boolean onkoKotip(Button btn){
+        for(int k=0; k<4; k++){
+            if(pm.getPelaaja(vuoroLaskuri).getKotiPesa()[k].getNappi().equals(btn)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public Nappula liikutettava(Button btn){
+        for(int k=0; k<4; k++){
+            if(pm.getPelaaja(vuoroLaskuri).getNappulat()[k].getNappi().equals(btn)) {
+                return pm.getPelaaja(vuoroLaskuri).getNappulat()[k];
+            }
+        }
+        return null;
     }
 
     public void setPeliManageri(PeliManageri u){

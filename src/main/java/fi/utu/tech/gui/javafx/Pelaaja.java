@@ -45,7 +45,7 @@ public class Pelaaja {
 
 
     public String getNimi() {
-        return nimi;
+        return nimi + väri;
     }
 
 
@@ -63,7 +63,9 @@ public class Pelaaja {
     public void setKotipesa(Nappula[] kPesa){
         this.kotiPesa = kPesa;
     }
+
     public Nappula[] getKotiPesa(){
+
         return kotiPesa;
     }
 
@@ -92,13 +94,42 @@ public class Pelaaja {
         return maaliAlue;
     }
 
+
     //Nappulat käyttöön/pois käytöstä
     public void disableNappulat(boolean disable){
         for(int i= 0; i<4; i++){
             getNappulat()[i].disable(disable);
         }
     }
-
+    //testaa onko kotipesä tyhjä, jos on: true
+    //jos ei: false
+    public boolean kotipesaTyhja(){
+        for(int i= 0; i<4; i++){
+            if(kotiPesa[i] != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+    //tarkistaa onko kotipesä täynnä
+    public boolean kotipesaTaysi(){
+        for(int i= 0; i<4; i++){
+            if(kotiPesa[i] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+    // tarkistaa onko maalialue täynnä, eli onko pelaaja voittanut
+    //jos täysi: true
+    public boolean maalialueTaysi(){
+        for(int i= 0; i<4; i++){
+            if(maaliAlue[i] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public Nappula[] getNappulat() {
         return nappulat;
