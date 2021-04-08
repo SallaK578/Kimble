@@ -1,8 +1,6 @@
 package fi.utu.tech.gui.javafx;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +51,7 @@ public class GameBoard {
     private int vuoroLaskuri;
 
     public PeliManageri pm;
-    private int noppaArvo = 0;
+    private int nopanTulos;
 
     public GameBoard(){
 
@@ -66,6 +64,7 @@ public class GameBoard {
     @FXML
     //liikutettavan nappulan valinta
     void liikutaBtn(ActionEvent event) {
+
         System.out.println("Nappi toimii" );
 
     }
@@ -86,19 +85,19 @@ public class GameBoard {
         //poistetaan aloitusnappi
         gridPane.getChildren().remove(this.aloita);
         noppa.setOnAction(this::heitaNoppaa);
-       pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
+        pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
         ohjeLabel.setText(getOhje(1));
     }
 
     @FXML
     //Noppaa heitetään
     void heitaNoppaa(ActionEvent event) {
-        silmaluku.setText(Integer.toString(noppaArvo));
+        nopanTulos = pm.roll();
+        silmaluku.setText(Integer.toString(nopanTulos));
+        
     }
     public void initialize(){
-        //pelaajaLabel.textProperty().bind(vuoro.textProperty());
-        //ohjeLabel.textProperty().bind(Bindings.convert(ohje));
-        //silmaluku.textProperty().bind(Bindings.convert(heitto));
+
 
 
     }

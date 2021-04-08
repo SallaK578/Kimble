@@ -16,7 +16,7 @@ public class PeliManageri {
 
     }
     public int roll() {
-        return noppa.nextInt(6);
+        return noppa.nextInt(6)+1;
     }
 
     public Pelaaja getPelaaja(int indeksi) {

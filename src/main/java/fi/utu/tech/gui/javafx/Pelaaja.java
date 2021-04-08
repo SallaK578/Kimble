@@ -2,8 +2,7 @@ package fi.utu.tech.gui.javafx;
 
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
