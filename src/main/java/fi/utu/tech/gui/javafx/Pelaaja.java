@@ -2,6 +2,8 @@ package fi.utu.tech.gui.javafx;
 
 
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
@@ -46,19 +48,58 @@ public class Pelaaja {
     public String getNimi() {
         return nimi;
     }
-    //pitää ehk muuttaa sillee et parametriks nappula vaan
-    public void setKotiPesa(Nappula[] kotiPesa) {
-        this.kotiPesa = kotiPesa;
+
+
+    //Yksittäisen nappulan asettaminen kotipesään
+    public void asetaKotiPesaan(Nappula n) {
+        for(int i= 0; i<4; i++){
+            if(this.kotiPesa[i] == null){
+                this.kotiPesa[i] = n;
+                n.setBtnCoordinates(kotiKoord.get(i+1)[0],kotiKoord.get(i+1)[1]);
+                break;
+            }
+        }
+    }
+    //kotipesä arrayn asettaminen(ei ehkä tarpeellinen, alustetaan jo alussa)
+    public void setKotipesa(Nappula[] kPesa){
+        this.kotiPesa = kPesa;
     }
     public Nappula[] getKotiPesa(){
         return kotiPesa;
     }
-    public void setMaaliAlue(){
+
+    //yksittäisen nappulan asettaminen maaliin
+    //testataanko siirron mahdollisuus jo tässä?
+    public boolean asetaMaaliin2(int ruutu, Nappula n){
+        if(maaliAlue[ruutu-1] == null) {
+            maaliAlue[ruutu - 1] = n;
+            n.setBtnCoordinates(maaliKoord.get(ruutu)[0], maaliKoord.get(ruutu)[1]);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public void asetaMaaliin(int ruutu, Nappula n){
+
+        maaliAlue[ruutu-1] = n;
+        n.setBtnCoordinates(maaliKoord.get(ruutu)[0], maaliKoord.get(ruutu)[1]);
 
     }
+    public void setMaaliAlue(Nappula[] maali){
+        this.maaliAlue = maali;
+    }
+
     public Nappula[] getMaaliAlue() {
         return maaliAlue;
     }
+
+    //Nappulat käyttöön/pois käytöstä
+    public void disableNappulat(boolean disable){
+        for(int i= 0; i<4; i++){
+            getNappulat()[i].disable(disable);
+        }
+    }
+
 
     public Nappula[] getNappulat() {
         return nappulat;
@@ -88,6 +129,7 @@ public class Pelaaja {
             apu[0] = 0;
             apu[1] = 7+j;
             nappulat[j]= new Nappula(0, btn, apu);
+            kotiPesa[j] = nappulat[j];
         }
 
 
@@ -117,7 +159,8 @@ public class Pelaaja {
             int[] apu = new int[2];
             apu[0] = 7+j;
             apu[1] = 0;
-            nappulat[j]= new Nappula(0, btn, apu);
+            nappulat[j]= new Nappula(1, btn, apu);
+            kotiPesa[j] = nappulat[j];
         }
     }
     private void initVih(){
@@ -144,7 +187,8 @@ public class Pelaaja {
             int[] apu = new int[2];
             apu[0] = 17;
             apu[1] = 7+j;
-            nappulat[j]= new Nappula(0, btn, apu);
+            nappulat[j]= new Nappula(2, btn, apu);
+            kotiPesa[j] = nappulat[j];
         }
     }
     private void initKel(){
@@ -163,7 +207,7 @@ public class Pelaaja {
             apu[0] = 8 + k%2;
             maaliKoord.put(k,apu);
         }
-        //Nappulaoliot luodaan ja lisätään nappulat arrayhin
+        //Nappulaoliot luodaan ja lisätään nappulat arrayhin ja kotipesaan
         for(int j = 0;j<4;j++){
             Button btn = new Button();
             btn.getStyleClass().add("nappula");
@@ -171,9 +215,10 @@ public class Pelaaja {
             int[] apu = new int[2];
             apu[0] = 7+j;
             apu[1] = 17;
-            nappulat[j]= new Nappula(0, btn, apu);
+            nappulat[j]= new Nappula(3, btn, apu);
+            kotiPesa[j] = nappulat[j];
         }
     }
-
+    
 
 }

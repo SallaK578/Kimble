@@ -33,5 +33,10 @@ public class Nappula {
         return coordinates[1];
     }
 
+    //disable nappula jos true, false -> able
+    public void disable(boolean disable){
+        this.nappi.setDisable(disable);
+    }
+
 
 }

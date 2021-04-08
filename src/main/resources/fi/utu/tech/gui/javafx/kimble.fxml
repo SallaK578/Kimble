@@ -221,12 +221,12 @@
       </Button>
    </bottom>
    <top>
-       <HBox alignment="CENTER" >
-            <Label>
-                Kenen vuoro
+       <HBox alignment="CENTER" spacing="10">
+            <Label fx:id="pelaajaLabel" text=" Paina 'aloita' nappia ">
+
             </Label>
-           <Label>
-               mitä teet
+           <Label fx:id="ohjeLabel" text = " ">
+
            </Label>
 
        </HBox>
