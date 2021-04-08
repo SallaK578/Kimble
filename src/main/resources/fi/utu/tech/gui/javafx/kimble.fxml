@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import java.lang.String?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="gbPane"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane fx:id="gbPane"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.utu.tech.gui.javafx.GameBoard">
    <center>
-      <GridPane prefHeight="364.0" prefWidth="574.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="gridPane" prefHeight="364.0" prefWidth="574.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" minWidth="30.0" prefWidth="30.0" />
             <ColumnConstraints hgrow="NEVER" minWidth="30.0" prefWidth="30.0" />
@@ -199,13 +199,17 @@
                      <Font name="System Bold" size="15.0" />
                  </font>
              </Label>
-
+             <Button fx:id="aloita" alignment="CENTER" mnemonicParsing="false" onAction="#aloitaPeli" text="aloita" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="8" GridPane.rowSpan="2">
+                 <GridPane.margin>
+                     <Insets left="4.0" />
+                 </GridPane.margin>
+             </Button>
              <Button fx:id="noppa" alignment="CENTER" mnemonicParsing="false" onAction="#heitaNoppaa" text="Noppa" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2">
                  <GridPane.margin>
                      <Insets left="4.0" />
                  </GridPane.margin>
              </Button>
-             <Label fx:id="silmaluku" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="61.0" text="Silmäluku" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+             <Label fx:id="silmaluku" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="61.0" text="Silmäluku" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="10" />
          </children>
       </GridPane>
    </center>
@@ -217,12 +221,12 @@
       </Button>
    </bottom>
    <top>
-       <HBox alignment="CENTER" >
-            <Label>
-                Kenen vuoro
+       <HBox alignment="CENTER" spacing="10">
+            <Label fx:id="pelaajaLabel" text=" Paina 'aloita' nappia ">
+
             </Label>
-           <Label>
-               mitä teet
+           <Label fx:id="ohjeLabel" text = " ">
+
            </Label>
 
        </HBox>

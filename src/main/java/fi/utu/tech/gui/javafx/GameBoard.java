@@ -1,6 +1,6 @@
 package fi.utu.tech.gui.javafx;
 
-import javafx.beans.property.SimpleStringProperty;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,286 +28,20 @@ public class GameBoard {
     private GridPane gridPane;
 
     @FXML
-    private Circle ruutu1;
-
-    @FXML
-    private Circle ruutu8;
-
-    @FXML
-    private Circle ruutu15;
-
-    @FXML
-    private Circle ruutu22;
-
-    @FXML
-    private Circle ruutu28;
-
-    @FXML
-    private Circle ruutu7;
-
-    @FXML
-    private Circle ruutu14;
-
-    @FXML
-    private Circle ruutu21;
-
-    @FXML
-    private Circle ruutu20;
-
-    @FXML
-    private Circle ruutu19;
-
-    @FXML
-    private Circle ruutu6;
-
-    @FXML
-    private Circle ruutu5;
-
-    @FXML
-    private Circle ruutu4;
-
-    @FXML
-    private Circle ruutu9;
-
-    @FXML
-    private Circle ruutu3;
-
-    @FXML
-    private Circle ruutu10;
-
-    @FXML
-    private Circle ruutu11;
-
-    @FXML
-    private Circle ruutu12;
-
-    @FXML
-    private Circle ruutu13;
-
-    @FXML
-    private Circle ruutu16;
-
-    @FXML
-    private Circle ruutu17;
-
-    @FXML
-    private Circle ruutu18;
-
-    @FXML
-    private Circle ruutu25;
-
-    @FXML
-    private Circle ruutu24;
-
-    @FXML
-    private Circle ruutu23;
-
-    @FXML
-    private Circle ruutu26;
-
-    @FXML
-    private Circle ruutu27;
-
-    @FXML
-    private Circle ruutu2;
-
-    @FXML
-    private Circle pPesa3;
-
-    @FXML
-    private Circle pPesa2;
-
-    @FXML
-    private Circle pPesa1;
-
-    @FXML
-    private Circle pPesa0;
-
-    @FXML
-    private Circle sPesa0;
-
-    @FXML
-    private Circle sPesa3;
-
-    @FXML
-    private Circle sPesa2;
-
-    @FXML
-    private Circle sPesa1;
-
-    @FXML
-    private Circle vPesa0;
-
-    @FXML
-    private Circle vPesa1;
-
-    @FXML
-    private Circle vpPesa2;
-
-    @FXML
-    private Circle vPesa3;
-
-    @FXML
-    private Circle kPesa3;
-
-    @FXML
-    private Circle kPesa2;
-
-    @FXML
-    private Circle kPesa1;
-
-    @FXML
-    private Circle kPesa0;
-
-    @FXML
-    private Circle pMaali1;
-
-    @FXML
-    private Circle pMaali2;
-
-    @FXML
-    private Circle pMaali3;
-
-    @FXML
-    private Circle pMaali4;
-
-    @FXML
-    private Circle sMaali1;
-
-    @FXML
-    private Circle sMaali4;
-
-    @FXML
-    private Circle sMaali3;
-
-    @FXML
-    private Circle sMaali2;
-
-    @FXML
-    private Circle vMaali4;
-
-    @FXML
-    private Circle vMaali3;
-
-    @FXML
-    private Circle vMaali2;
-
-    @FXML
-    private Circle vMaali1;
-
-    @FXML
-    private Circle kMaali4;
-
-    @FXML
-    private Circle kMaali3;
-
-    @FXML
-    private Circle kMaali2;
-
-    @FXML
-    private Circle kMaali1;
-
-    @FXML
-    private Label p1;
-
-    @FXML
-    private Label k1;
-
-    @FXML
-    private Label v1;
-
-    @FXML
-    private Label s1;
-
-    @FXML
-    private Label p2;
-
-    @FXML
-    private Label s2;
-
-    @FXML
-    private Label k2;
-
-    @FXML
-    private Label v2;
-
-    @FXML
-    private Label s4;
-
-    @FXML
-    private Label k3;
-
-    @FXML
-    private Label v3;
-
-    @FXML
-    private Label p3;
-
-    @FXML
-    private Label s3;
-
-    @FXML
-    private Label v4;
-
-    @FXML
-    private Label k4;
-
-    @FXML
-    private Label p4;
-
-    @FXML
-    private Button pBut1;
-
-    @FXML
-    private Button pBut3;
-
-    @FXML
-    private Button pBut4;
-
-    @FXML
-    private Button pBut2;
-
-    @FXML
-    private Button kBut4;
-
-    @FXML
-    private Button vBut1;
-
-    @FXML
-    private Button vBut2;
-
-    @FXML
-    private Button vBut3;
-
-    @FXML
-    private Button vBut4;
-
-    @FXML
-    private Button kBut3;
-
-    @FXML
-    private Button kBut2;
-
-    @FXML
-    private Button kBut1;
-
-    @FXML
-    private Button sBut4;
-
-    @FXML
-    private Button sBut3;
-
-    @FXML
-    private Button sBut2;
-
-    @FXML
-    private Button sBut1;
-
-    @FXML
     private Label ohjeLabel;
 
     @FXML
+    private Label pelaajaLabel;
+
+    @FXML
     private Label silmaluku;
+
+    @FXML
+    private Button noppa;
+
+    @FXML
+    private Button aloita;
+
 
     // Normiruuduilla (ei kotipesät/maalialueet) sijaitsevat nappulat talletetaan tänne
     //Tällä tarkastetaan, onko ruutu jo varattu, tapahtuuko syöminen
@@ -316,21 +50,157 @@ public class GameBoard {
 
     private int vuoroLaskuri;
 
-    public PeliManageri u;
+    public PeliManageri pm;
+    private int nopanTulos;
 
-    public GameBoard(PeliManageri u){
+    public GameBoard(){
 
-        this.u = u;
 
-        //nappuloiden asetus
-        for(int i= 0; i<4;i++){
-            if(u.getpelaajaLista().get(i) != null){
+
+
+
+    }
+
+    @FXML
+    //liikutettavan nappulan valinta
+
+    void liikutaBtn(ActionEvent event) {
+
+        if(onkoKotip((Button)event.getSource()) && nopanTulos ==6){
+            System.out.println("Nappi toimii" );
+            gridPane.getChildren().remove((Button)event.getSource());
+            switch(vuoroLaskuri){
+                case 0:
+                    System.out.println("case0 toimii");
+                    Nappula nappula =liikutettava((Button)event.getSource());
+                    nappula.setBtnCoordinates(1,7);
+                    System.out.println(nappula.getBtnX());
+                    gridPane.add(nappula.getNappi(), 1, 7);
+                     break;
+                case 1:
+                    System.out.println("case1 toimii");
+                    Nappula nappula1 =liikutettava((Button)event.getSource());
+                    nappula1.setBtnCoordinates(10,1);
+                    gridPane.add(nappula1.getNappi(), 10, 1);
+                    break;
+                case 2:
+                    System.out.println("case2 toimii");
+                    Nappula nappula2 =liikutettava((Button)event.getSource());
+                    nappula2.setBtnCoordinates(17,7);
+                    gridPane.add(nappula2.getNappi(), 17, 7);
+                    break;
+                case 3:
+                    System.out.println("case3 toimii");
+                    Nappula nappula3 =liikutettava((Button)event.getSource());
+                    nappula3.setBtnCoordinates(7,17);
+                    gridPane.add(nappula3.getNappi(),7, 17);
+                    break;
+
 
             }
 
+
         }
 
+
+
+
+
     }
+    @FXML
+    void aloitaPeli(ActionEvent event) {
+        //nappuloiden asetus
+        for(int i= 0; i<4;i++){
+            if(pm.getpelaajaLista().get(i) != null){
+                for(int j=0; j<4;j++){
+                    Nappula nappula = pm.getpelaajaLista().get(i).getNappulat()[j];
+                    nappula.getNappi().setOnAction(this::liikutaBtn);
+                    nappula.getNappi().setDisable(true);
+                    gridPane.add(nappula.getNappi(), nappula.getBtnX(), nappula.getBtnY());
+
+                }
+            }
+
+        }
+        //poistetaan aloitusnappi
+        gridPane.getChildren().remove(this.aloita);
+        noppa.setOnAction(this::heitaNoppaa);
+        vuoroLaskuri = 0;
+        pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
+        ohjeLabel.setText(getOhje(1));
+    }
+
+    @FXML
+    //Noppaa heitetään
+    void heitaNoppaa(ActionEvent event) {
+        nopanTulos = pm.roll();
+        silmaluku.setText(Integer.toString(nopanTulos));
+        if(pm.getPelaaja(vuoroLaskuri).kotipesaTaysi() && nopanTulos == 6) {
+            ohjeLabel.setText(getOhje(3));
+            pm.getPelaaja(vuoroLaskuri).disableNappulat(false);
+        }else{
+            if(vuoroLaskuri!=3) {
+                vuoroLaskuri++;
+            }else{
+                vuoroLaskuri = 0;
+            }
+                pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
+                ohjeLabel.setText(getOhje(1));
+
+            }
+
+
+    }
+    //&& pm.getPelaaja(vuoroLaskuri).kotipesaTyhja() != true
+    public void initialize(){
+
+
+
+    }
+    public boolean onkoKotip(Button btn){
+        for(int k=0; k<4; k++){
+            if(pm.getPelaaja(vuoroLaskuri).getKotiPesa()[k].getNappi().equals(btn)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public Nappula liikutettava(Button btn){
+        for(int k=0; k<4; k++){
+            if(pm.getPelaaja(vuoroLaskuri).getNappulat()[k].getNappi().equals(btn)) {
+                return pm.getPelaaja(vuoroLaskuri).getNappulat()[k];
+            }
+        }
+        return null;
+    }
+
+    public void setPeliManageri(PeliManageri u){
+        this.pm = u;
+    }
+
+
+
+    //Palauttaa string muodossa ohjeen eri tilanteisiin
+    public String getOhje(int skenaario){
+        switch(skenaario){
+            case 1:
+                return "Heitä noppaa";
+
+            case 2:
+                return "Valitse liikutettava nappula";
+
+            case 3:
+                return "Sait numeron kuusi, voit liikuttaa nappulan pois kotipesästä";
+
+            case 4:
+                return "Sinulla ei ole mahdollisia siirtoja";
+
+            case 5:
+                return "Et voi siirtää tätä nappulaa";
+        }
+        return " ";
+    }
+<<<<<<< HEAD
     
     
     // silmäluku talletetaan tähän
@@ -370,7 +240,10 @@ public class GameBoard {
     public void setPeliManageri(PeliManageri u){
         this.u = u;
     }
-
+=======
 
 }
+>>>>>>> salla
+
+
 

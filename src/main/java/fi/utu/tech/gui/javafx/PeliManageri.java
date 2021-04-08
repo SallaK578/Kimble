@@ -15,8 +15,17 @@ public class PeliManageri {
     public PeliManageri(){
 
     }
+    public boolean kotipesatTaynna(){
+        for(int i =0; i<4; i++){
+            if(!pelaajaLista.get(i).kotipesaTaysi()) {
+                return false;
+            }
+        }
+        return true;
+
+    }
     public int roll() {
-        return noppa.nextInt(6);
+        return noppa.nextInt(6)+1;
     }
 
     public Pelaaja getPelaaja(int indeksi) {
