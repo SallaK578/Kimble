@@ -41,11 +41,19 @@ public class Pelaaja {
 
         }
     }
+    //palauttaa maalikoordinaatti
+    public int[] getMaaliKoo(int ruutu){
+        return maaliKoord.get(ruutu);
+    }
 
+    //palauttaa kotikoordinaatti
+    public int[] getKotiKoo(int ruutu){
+        return kotiKoord.get(ruutu);
+    }
 
-
+    //palauttaa pelaajan nimen ja värin
     public String getNimi() {
-        return nimi + väri;
+        return nimi + " " +väri;
     }
 
 
@@ -83,9 +91,31 @@ public class Pelaaja {
     public void asetaMaaliin(int ruutu, Nappula n){
 
         maaliAlue[ruutu-1] = n;
+        n.setLiikututRuudut(0);
         n.setBtnCoordinates(maaliKoord.get(ruutu)[0], maaliKoord.get(ruutu)[1]);
 
     }
+
+    //nappulan poisto kotipesästä tai maalialueelta
+    //poistetaan kotipesästä kun koti=true, poistetaan maalialueelta kun koti=false
+    public void removeNappula(Nappula n, boolean koti){
+        if(koti){
+            for(int i= 0; i<4; i++){
+                if(kotiPesa[i] != null && kotiPesa[i].equals(n)){
+                    kotiPesa[i] = null;
+                }
+            }
+        }else{
+            for(int k= 0; k<4; k++){
+                if(maaliAlue[k].equals(n)){
+                    maaliAlue[k] = null;
+                }
+            }
+
+        }
+
+    }
+
     public void setMaaliAlue(Nappula[] maali){
         this.maaliAlue = maali;
     }
@@ -218,6 +248,7 @@ public class Pelaaja {
             apu[0] = 17;
             apu[1] = 7+j;
             nappulat[j]= new Nappula(2, btn, apu);
+
             kotiPesa[j] = nappulat[j];
         }
     }
