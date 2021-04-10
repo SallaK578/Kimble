@@ -142,6 +142,9 @@ public class GameBoard {
             //noppa pois käytöstä
             noppa.setDisable(true);
         }
+        if (nopanTulos != 6) {
+        	noppa.setDisable(true);
+        	}
 
 
     }
@@ -171,6 +174,8 @@ public class GameBoard {
                 //lisätään gridpaneen
                 System.out.println(nappula.getBtnX());
                 gridPane.add(btn, 1, 7);
+                
+                btn.setDisable(true);
                 break;
             case 1:
                 System.out.println("case1 toimii");
@@ -191,6 +196,8 @@ public class GameBoard {
                 pm.getPelaaja(vuoroLaskuri).removeNappula(nappula1, true);
                 //lisätään gridpaneen
                 gridPane.add(btn, 10, 1);
+                
+                btn.setDisable(true);
                 break;
             case 2:
                 System.out.println("case2 toimii");
@@ -211,6 +218,8 @@ public class GameBoard {
                 pm.getPelaaja(vuoroLaskuri).removeNappula(nappula2, true);
                 //lisätään gridpaneen
                 gridPane.add(btn, 16, 10);
+                
+                btn.setDisable(true);
                 break;
             case 3:
                 System.out.println("case3 toimii");
@@ -231,6 +240,8 @@ public class GameBoard {
                 pm.getPelaaja(vuoroLaskuri).removeNappula(nappula3, true);
                 //lisätään gridpaneen
                 gridPane.add(btn, 7, 16);
+                
+                btn.setDisable(true);
                 break;
         }
 
@@ -238,6 +249,7 @@ public class GameBoard {
 
     public void siirto(Button btn) {
         Nappula n = liikutettava(btn);
+        
         //Onko kyseinen nappula laudalla
         if (peliLauta.contains(n)) {
             //missä ruudussa nappula ??vai indeksi?
@@ -265,6 +277,10 @@ public class GameBoard {
                 // muuten liikutetaan
                 normiSiirto(btn, uusi);
             }
+            
+            
+            
+            
         }
 
         // jos maalialueella, liikutetaan siellä
