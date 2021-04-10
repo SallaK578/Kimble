@@ -7,6 +7,7 @@ public class Nappula {
     public Button nappi;
     //id punanen = 0, sininen = 1, vihreä = 2, keltanen = 3
     public int id;
+    public int liikututRuudut;
 
     public Nappula(int id, Button button, int[] coord){
         this.coordinates = coord;
@@ -31,6 +32,13 @@ public class Nappula {
     }
     public int getBtnY(){
         return coordinates[1];
+    }
+    public int getLiikututRuudut(){
+        return liikututRuudut;
+    }
+    public void setLiikututRuudut(int ruudut){
+        liikututRuudut = ruudut;
+
     }
 
     //disable nappula jos true, false -> able
