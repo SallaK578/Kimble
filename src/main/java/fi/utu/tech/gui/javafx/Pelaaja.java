@@ -107,7 +107,7 @@ public class Pelaaja {
             }
         }else{
             for(int k= 0; k<4; k++){
-                if(maaliAlue[k].equals(n)){
+                if(maaliAlue[k] != null && maaliAlue[k].equals(n)){
                     maaliAlue[k] = null;
                 }
             }
