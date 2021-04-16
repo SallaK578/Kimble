@@ -4,6 +4,7 @@ package fi.utu.tech.gui.javafx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -110,7 +111,28 @@ public class GameBoard {
 
     @FXML
     void rageQuit(ActionEvent event) {
-        // ragequit scene -> pm.getPelaaja(vuorolaskuri).getnimi
+        try {
+
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("quit.fxml")
+            );
+
+
+            Parent root = loader.load();
+
+            quitController controller = loader.getController();
+
+            loader.setController(controller);
+            controller.setNimi(pm.getPelaaja(vuoroLaskuri).getPelkkaNimi());
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -118,16 +140,6 @@ public class GameBoard {
     void heitaNoppaa(ActionEvent event) {
         nopanTulos = pm.roll();
         silmaluku.setText(Integer.toString(nopanTulos));
-        //jos pelaajan kotipesä on täynnä ja nopasta kutonen niin suoritetaan
-        /*if (pm.getPelaaja(vuoroLaskuri).kotipesaTaysi() && nopanTulos == 6) {
-            ohjeLabel.setText(getOhje(3));
-            pm.getPelaaja(vuoroLaskuri).disableNappulat(false);
-        }*/
-        //voiko pelaaja liikuttaa laudalla olevia nappuloitaan
-        /*if(voikoLiikkua() && !pm.getPelaaja(vuoroLaskuri).kotipesaTaysi() && nopanTulos != 6) {
-            ohjeLabel.setText(getOhje(2));
-            pm.getPelaaja(vuoroLaskuri).disableNappulat(false);
-        }*/
         //voiko liikuttaa
         if (voikoLiikkua()) {
             if(nopanTulos == 6){
@@ -154,7 +166,7 @@ public class GameBoard {
         }
         
     }
-    //&& pm.getPelaaja(vuoroLaskuri).kotipesaTyhja() != true
+
 
     public void ensimmäinenNappula(Button btn) {
         //poistetaan gridpanesta
@@ -297,12 +309,18 @@ public class GameBoard {
                              gridPane.add(btn, pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[0], pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[1]);
                             //lisätään pelaajan maaliin
                             pm.getPelaaja(vuoroLaskuri).asetaMaaliin(i, liikutettava(btn));
+                            if(pm.getPelaaja(vuoroLaskuri).maalialueTaysi()){
+                                voitto(btn);
+                            }
+                            if(nopanTulos != 6) {
+                                seuraava();
+                            }
                             break;
                         }
                     }
 
             }
-        
+
         pm.getPelaaja(vuoroLaskuri).disableNappulat(true);
 
     }
@@ -341,6 +359,10 @@ public class GameBoard {
             gridPane.add(btn, pm.getPelaaja(vuoroLaskuri).getMaaliKoo(ruutu)[0], pm.getPelaaja(vuoroLaskuri).getMaaliKoo(ruutu)[1]);
             //lisätään pelaajan maalialueelle
             pm.getPelaaja(vuoroLaskuri).asetaMaaliin(ruutu, liikutettava(btn));
+            if(pm.getPelaaja(vuoroLaskuri).maalialueTaysi()){
+                voitto(btn);
+            }
+
             if(nopanTulos != 6) {
                 seuraava();
             }
@@ -365,6 +387,10 @@ public class GameBoard {
         System.out.println("lisätty pelilautaan indeksi: " + peliLauta.indexOf(liikutettava(btn)));
         //lisätään nappulalle liikutut ruudut
         liikutettava(btn).setLiikututRuudut(liikutettava(btn).getLiikututRuudut()+nopanTulos);
+        if(pm.getPelaaja(vuoroLaskuri).maalialueTaysi()){
+            voitto(btn);
+        }
+
         if(nopanTulos != 6) {
             seuraava();
         }
@@ -498,6 +524,7 @@ public class GameBoard {
         for(int k=0; k< 28; k++) {
             peliLauta.add(null);
         }
+
     }
 
     public boolean onkoKotip(Button btn){
@@ -565,9 +592,10 @@ public class GameBoard {
         }
         //poistetaan aloitusnappi
         gridPane.getChildren().remove(this.aloita);
-        //noppa.setOnAction(this::heitaNoppaa);
-        //skipBtn.setOnAction(this::skippaaVuoro);
-        //rageBtn.setOnAction(this::rageQuit);
+
+        skipBtn.setDisable(false);
+        rageBtn.setDisable(false);
+        noppa.setDisable(false);
         vuoroLaskuri = 0;
         for(int i = vuoroLaskuri; i<4; i++){
             if(pm.getPelaaja(vuoroLaskuri) != null) {
@@ -578,6 +606,33 @@ public class GameBoard {
             }
         }
         ohjeLabel.setText(getOhje(1));
+    }
+
+    public void voitto(Button btn){
+        try {
+
+            Node node = (Node) btn;
+            Stage stage = (Stage) node.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("voitto.fxml")
+            );
+
+
+            Parent root = loader.load();
+
+            Voittocontroller controller = loader.getController();
+
+            loader.setController(controller);
+            controller.setVoittaja(pm.getPelaaja(vuoroLaskuri).getPelkkaNimi());
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

@@ -53,7 +53,20 @@ public class Pelaaja {
 
     //palauttaa pelaajan nimen ja värin
     public String getNimi() {
+        switch(väri){
+            case "pun":
+                return "Punainen"+ " " + nimi+ ":  ";
+            case "sin":
+                return "Sininen"+ " " + nimi+ ":  ";
+            case "kel":
+                return "Keltainen"+ " " + nimi+ ":  ";
+            case "vih":
+                return "Vihreä"+ " " + nimi+ ":  ";
+        }
         return nimi + " " +väri;
+    }
+    public String getPelkkaNimi(){
+        return nimi;
     }
 
 

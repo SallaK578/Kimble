@@ -40,8 +40,6 @@
             <TextField fx:id = "sininen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id = "vihrea" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id = "keltainen" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-            <Label text="Valitse pelaajien määrä: " />
          </children>
       </GridPane>
    </center>

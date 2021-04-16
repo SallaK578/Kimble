@@ -87,7 +87,7 @@ public class PelaajatController {
 
         //Testataan onko pelaajia tarpeeksi
         if(pelaajat<2){
-            ohje1.setText("Tarkista pelaajat");
+            ohje1.setText("Pelaajia tulee olla vähintään kaksi.");
 
         }else{
             //alustetaan koordinaatit pelimanagerille
