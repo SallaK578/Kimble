@@ -299,6 +299,7 @@ public class GameBoard {
                 // jos maalialueella, liikutetaan siellä
                     // OBSliikutetaan maalialueella
                 	//siirretään maalialueella
+                    //OBSHUOM TÄÄLLÄ VIKAA
                     for (int i = 1; i <= 4 ; i++) {
                         if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1].equals(liikutettava(btn)) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i+nopanTulos-1] == null) {
                             //poistetaan gridpanelta
@@ -309,9 +310,6 @@ public class GameBoard {
                              gridPane.add(btn, pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[0], pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[1]);
                             //lisätään pelaajan maaliin
                             pm.getPelaaja(vuoroLaskuri).asetaMaaliin(i, liikutettava(btn));
-                            if(pm.getPelaaja(vuoroLaskuri).maalialueTaysi()){
-                                voitto(btn);
-                            }
                             if(nopanTulos != 6) {
                                 seuraava();
                             }
