@@ -13,7 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,6 +99,7 @@ public class GameBoard {
             }
 
 
+
         }
 
 
@@ -180,8 +180,8 @@ public class GameBoard {
                 //lisätään gridpaneen
                 System.out.println(nappula.getBtnX());
                 gridPane.add(btn, 1, 7);
-                
-                btn.setDisable(true);
+
+                pm.getPelaaja(vuoroLaskuri).disableNappulat(true);
                 break;
             case 1:
                 System.out.println("case1 toimii");
@@ -202,8 +202,8 @@ public class GameBoard {
                 pm.getPelaaja(vuoroLaskuri).removeNappula(nappula1, true);
                 //lisätään gridpaneen
                 gridPane.add(btn, 10, 1);
-                
-                btn.setDisable(true);
+
+                pm.getPelaaja(vuoroLaskuri).disableNappulat(true);
                 break;
             case 2:
                 System.out.println("case2 toimii");
@@ -224,8 +224,8 @@ public class GameBoard {
                 pm.getPelaaja(vuoroLaskuri).removeNappula(nappula2, true);
                 //lisätään gridpaneen
                 gridPane.add(btn, 16, 10);
-                
-                btn.setDisable(true);
+
+                pm.getPelaaja(vuoroLaskuri).disableNappulat(true);
                 break;
             case 3:
                 System.out.println("case3 toimii");
@@ -246,8 +246,8 @@ public class GameBoard {
                 pm.getPelaaja(vuoroLaskuri).removeNappula(nappula3, true);
                 //lisätään gridpaneen
                 gridPane.add(btn, 7, 16);
-                
-                btn.setDisable(true);
+
+                pm.getPelaaja(vuoroLaskuri).disableNappulat(true);
                 break;
         }
 
@@ -269,7 +269,7 @@ public class GameBoard {
             if (n.getLiikututRuudut() + nopanTulos > 27) {
                 //Pääseekö maaliin
                 int erotus = (n.getLiikututRuudut()+nopanTulos)-27;
-                if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[erotus] == null) {
+                if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[erotus-1] == null) {
                     // OBS liikutetaan maaliin
                     maaliSiirto(btn, erotus);
                 }
@@ -284,13 +284,11 @@ public class GameBoard {
             }
         }else{
 
-            // jos maalialueella, liikutetaan siellä
-            for (int j = 0; j < 4; j++) {
-                if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j].equals(n)) {
+                // jos maalialueella, liikutetaan siellä
                     // OBSliikutetaan maalialueella
                 	//siirretään maalialueella
-                    for (int i = 0; i <= 3 ; i++) {
-                        if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i].equals(liikutettava(btn))) {
+                    for (int i = 1; i <= 4 ; i++) {
+                        if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1].equals(liikutettava(btn)) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i+nopanTulos-1] == null) {
                             //poistetaan gridpanelta
                             gridPane.getChildren().remove(btn);
                             //poistetaan pelaajan maalialueelta
@@ -302,10 +300,11 @@ public class GameBoard {
                             break;
                         }
                     }
-                    break;
-                }     
+
             }
-        }
+        
+        pm.getPelaaja(vuoroLaskuri).disableNappulat(true);
+
     }
 
 
@@ -342,6 +341,10 @@ public class GameBoard {
             gridPane.add(btn, pm.getPelaaja(vuoroLaskuri).getMaaliKoo(ruutu)[0], pm.getPelaaja(vuoroLaskuri).getMaaliKoo(ruutu)[1]);
             //lisätään pelaajan maalialueelle
             pm.getPelaaja(vuoroLaskuri).asetaMaaliin(ruutu, liikutettava(btn));
+            if(nopanTulos != 6) {
+                seuraava();
+            }
+
         }
 
     }
@@ -365,7 +368,7 @@ public class GameBoard {
         if(nopanTulos != 6) {
             seuraava();
         }
-        btn.setDisable(true);
+
 
 
     }
@@ -418,11 +421,15 @@ public class GameBoard {
             }
         }
         // jos maalialueella, voiko liikkua siellä?
-        for(int j = 0; j < 4; j++){
-            if(pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j].equals(n) && j+nopanTulos<4){
-                //voiko = true;
-                return true;
+        try{
+            for(int j = 0; j < 4; j++){
+                if(pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j].equals(n) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j+nopanTulos] == null){
+                    //voiko = true;
+                    return true;
+                }
             }
+        }catch(IndexOutOfBoundsException e){
+            return false;
         }
         // jos kotipesässä, voiko liikkua sieltä?
         for(int j = 0; j<4;j++){
@@ -488,7 +495,7 @@ public class GameBoard {
     }
 
     public void initialize(){
-        for(int k=0; k< 27; k++) {
+        for(int k=0; k< 28; k++) {
             peliLauta.add(null);
         }
     }
@@ -562,7 +569,14 @@ public class GameBoard {
         //skipBtn.setOnAction(this::skippaaVuoro);
         //rageBtn.setOnAction(this::rageQuit);
         vuoroLaskuri = 0;
-        pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
+        for(int i = vuoroLaskuri; i<4; i++){
+            if(pm.getPelaaja(vuoroLaskuri) != null) {
+            pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
+            break;
+            }else{
+                vuoroLaskuri++;
+            }
+        }
         ohjeLabel.setText(getOhje(1));
     }
 

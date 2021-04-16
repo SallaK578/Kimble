@@ -90,7 +90,7 @@ public class Pelaaja {
     }
     public void asetaMaaliin(int ruutu, Nappula n){
 
-        maaliAlue[ruutu] = n;
+        maaliAlue[ruutu-1] = n;
         n.setLiikututRuudut(0);
         n.setBtnCoordinates(maaliKoord.get(ruutu)[0], maaliKoord.get(ruutu)[1]);
 
