@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -17,11 +16,6 @@ public class Voittocontroller {
     @FXML
     private Label voittaja;
 
-    @FXML
-    private Label onnittelut;
-
-    @FXML
-    private Button uudestaan;
 
     public String nimi;
 

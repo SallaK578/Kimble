@@ -297,27 +297,28 @@ public class GameBoard {
         }else{
 
                 // jos maalialueella, liikutetaan siellä
-                    // OBSliikutetaan maalialueella
                 	//siirretään maalialueella
-                    //OBSHUOM TÄÄLLÄ VIKAA
-                    for (int i = 1; i <= 4 ; i++) {
-                        if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1].equals(liikutettava(btn)) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i+nopanTulos-1] == null) {
-                            //poistetaan gridpanelta
-                            gridPane.getChildren().remove(btn);
-                            //poistetaan pelaajan maalialueelta
-                            pm.getPelaaja(vuoroLaskuri).removeNappula(liikutettava(btn), false);
-                            //lisätään gridpanelle maaliin
-                             gridPane.add(btn, pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[0], pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[1]);
-                            //lisätään pelaajan maaliin
-                            pm.getPelaaja(vuoroLaskuri).asetaMaaliin(i, liikutettava(btn));
-                            if(nopanTulos != 6) {
-                                seuraava();
-                            }
-                            break;
-                        }
-                    }
 
+            for (int i = 1; i <= 4 ; i++) {
+                if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1].equals(liikutettava(btn)) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[(i+nopanTulos)-1] == null) {
+                    System.out.println("Liikutetaan maalialueella ruudusta: " + i  + "ruutuun " + (i+nopanTulos));
+                    System.out.println("");
+                    //poistetaan gridpanelta
+                    gridPane.getChildren().remove(btn);
+                    //poistetaan pelaajan maalialueelta
+                    pm.getPelaaja(vuoroLaskuri).removeNappula(liikutettava(btn), false);
+                    //lisätään gridpanelle maaliin
+                    gridPane.add(btn, pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[0], pm.getPelaaja(vuoroLaskuri).getMaaliKoo(i+nopanTulos)[1]);
+                    //lisätään pelaajan maaliin
+                    pm.getPelaaja(vuoroLaskuri).asetaMaaliin(i+nopanTulos, liikutettava(btn));
+                    if(nopanTulos != 6) {
+                        seuraava();
+                    }
+                    break;
+                    }
             }
+
+        }
 
         pm.getPelaaja(vuoroLaskuri).disableNappulat(true);
 
@@ -411,7 +412,6 @@ public class GameBoard {
 
     }
     public boolean voiko1Liikkua(Nappula n){
-        //boolean voiko = false;
         //Onko kyseinen nappula laudalla
         if(peliLauta.contains(n)){
             System.out.println("ainakin yks nappula laudalla");
@@ -428,7 +428,6 @@ public class GameBoard {
                 int erotus = (n.getLiikututRuudut()+nopanTulos)-27;
                 try{
                     if(pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[erotus-1] == null){
-                    //voiko = true;
                         return true;
                     }
                 }catch(IndexOutOfBoundsException e){
@@ -438,9 +437,7 @@ public class GameBoard {
             }else {
                 //Onko uusi sijainti tyhjä, tai toisen pelaajan nappula
                 if (peliLauta.get(uusi) == null ||peliLauta.get(uusi).getId() != vuoroLaskuri  ) {
-                    //voiko = true;
                     return true;
-                   // System.out.println("Testi: kun liikutetaan ekaa nappulaa uudestaan miksei anna liikkua" + voiko);
                 }
             }
         }
@@ -448,7 +445,6 @@ public class GameBoard {
         try{
             for(int j = 0; j < 4; j++){
                 if(pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j].equals(n) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j+nopanTulos] == null){
-                    //voiko = true;
                     return true;
                 }
             }
@@ -461,14 +457,12 @@ public class GameBoard {
                 switch(vuoroLaskuri){
                     case 0:
                         if(peliLauta.get(0) == null || peliLauta.get(0).getId() != 0){
-                            //voiko = true;
                             return true;
                         }else{
                             return false;
                         }
                     case 1:
                         if(peliLauta.get(7) == null || peliLauta.get(7).getId() != 1){
-                            //voiko = true;
                             return true;
                         }else{
                         return false;
@@ -476,14 +470,12 @@ public class GameBoard {
 
                     case 2:
                         if(peliLauta.get(14) == null || peliLauta.get(14).getId() != 2){
-                            //voiko = true;
                             return true;
                         }else{
                             return false;
                         }
                     case 3:
                         if(peliLauta.get(21) == null || peliLauta.get(21).getId() != 3){
-                            //voiko = true;
                             return true;
                         }else{
                             return false;
@@ -595,10 +587,11 @@ public class GameBoard {
         rageBtn.setDisable(false);
         noppa.setDisable(false);
         vuoroLaskuri = 0;
+        //Määritetään ensimmäinen pelaaja
         for(int i = vuoroLaskuri; i<4; i++){
             if(pm.getPelaaja(vuoroLaskuri) != null) {
-            pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
-            break;
+                pelaajaLabel.setText(pm.getPelaaja(vuoroLaskuri).getNimi());
+                break;
             }else{
                 vuoroLaskuri++;
             }
@@ -613,7 +606,6 @@ public class GameBoard {
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("voitto.fxml")
             );
-
 
             Parent root = loader.load();
 

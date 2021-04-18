@@ -4,8 +4,6 @@ package fi.utu.tech.gui.javafx;
 
 
 import javafx.scene.control.Button;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Pelaaja {
@@ -80,10 +78,6 @@ public class Pelaaja {
             }
         }
     }
-    //kotipesä arrayn asettaminen(ei ehkä tarpeellinen, alustetaan jo alussa)
-    public void setKotipesa(Nappula[] kPesa){
-        this.kotiPesa = kPesa;
-    }
 
     public Nappula[] getKotiPesa(){
 
@@ -91,16 +85,6 @@ public class Pelaaja {
     }
 
     //yksittäisen nappulan asettaminen maaliin
-    //testataanko siirron mahdollisuus jo tässä?
-    public boolean asetaMaaliin2(int ruutu, Nappula n){
-        if(maaliAlue[ruutu-1] == null) {
-            maaliAlue[ruutu - 1] = n;
-            n.setBtnCoordinates(maaliKoord.get(ruutu)[0], maaliKoord.get(ruutu)[1]);
-            return true;
-        }else{
-            return false;
-        }
-    }
     public void asetaMaaliin(int ruutu, Nappula n){
 
         maaliAlue[ruutu-1] = n;
@@ -129,10 +113,6 @@ public class Pelaaja {
 
     }
 
-    public void setMaaliAlue(Nappula[] maali){
-        this.maaliAlue = maali;
-    }
-
     public Nappula[] getMaaliAlue() {
         return maaliAlue;
     }
@@ -144,16 +124,7 @@ public class Pelaaja {
             getNappulat()[i].disable(disable);
         }
     }
-    //testaa onko kotipesä tyhjä, jos on: true
-    //jos ei: false
-    public boolean kotipesaTyhja(){
-        for(int i= 0; i<4; i++){
-            if(kotiPesa[i] != null) {
-                return false;
-            }
-        }
-        return true;
-    }
+
     //tarkistaa onko kotipesä täynnä
     public boolean kotipesaTaysi(){
         for(int i= 0; i<4; i++){

@@ -15,13 +15,7 @@ import java.io.IOException;
 public class quitController {
 
     @FXML
-    private Button uudelleen;
-
-    @FXML
     private Label nimi;
-
-    @FXML
-    private Label hapea;
 
     @FXML
     void uudestaan(ActionEvent event) {
@@ -32,15 +26,13 @@ public class quitController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("nimet.fxml")
             );
 
-
             Parent root = loader.load();
 
             PelaajatController controller = loader.getController();
             loader.setController(controller);
 
-
             Scene scene = new Scene(root);
-            scene.getStylesheets().addAll(this.getClass().getResource("styles.css").toExternalForm());//asetetaan tyyli
+            scene.getStylesheets().addAll(this.getClass().getResource("styles.css").toExternalForm());
 
             stage.setScene(scene);
             stage.show();
