@@ -1,0 +1,45 @@
+.nappula{
+
+
+    -fx-background-radius: 5em;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-max-width:24px;
+    -fx-max-height: 24px;
+
+
+
+
+
+}
+.pNappula{
+    -fx-color: #ff0000;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: #000000;
+    -fx-border-radius: 5em;
+
+
+}
+.vNappula{
+   -fx-background-color: #018d1a;
+   -fx-border-width: 3px;
+   -fx-border-style: solid;
+   -fx-border-color: #000000;
+   -fx-border-radius: 5em;
+}
+.kNappula{
+    -fx-background-color: #ffee00;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: #000000;
+    -fx-border-radius: 5em;
+}
+.sNappula{
+
+   -fx-background-color: #010aff;
+   -fx-border-width: 3px;
+   -fx-border-style: solid;
+   -fx-border-color: #000000;
+   -fx-border-radius: 5em;
+}
