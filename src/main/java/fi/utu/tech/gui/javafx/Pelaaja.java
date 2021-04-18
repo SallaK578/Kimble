@@ -1,8 +1,5 @@
 package fi.utu.tech.gui.javafx;
 
-
-
-
 import javafx.scene.control.Button;
 import java.util.HashMap;
 
@@ -125,15 +122,6 @@ public class Pelaaja {
         }
     }
 
-    //tarkistaa onko kotipesä täynnä
-    public boolean kotipesaTaysi(){
-        for(int i= 0; i<4; i++){
-            if(kotiPesa[i] == null) {
-                return false;
-            }
-        }
-        return true;
-    }
     // tarkistaa onko maalialue täynnä, eli onko pelaaja voittanut
     //jos täysi: true
     public boolean maalialueTaysi(){

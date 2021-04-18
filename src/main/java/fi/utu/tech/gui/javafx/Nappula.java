@@ -24,9 +24,6 @@ public class Nappula {
         coordinates[0] = x;
         coordinates[1] = y;
     }
-    public int[] getBtnCoordinates(){
-        return coordinates;
-    }
     public int getBtnX(){
         return coordinates[0];
     }

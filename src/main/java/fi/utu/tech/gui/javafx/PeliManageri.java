@@ -8,6 +8,7 @@ public class PeliManageri {
 
 
     Random noppa = new Random();
+
     //tallennetaan pelaajat -> indeksi 0=punainen, 1=sininen, 2=vihreä, 3=keltainen
     ArrayList<Pelaaja> pelaajaLista = new ArrayList<Pelaaja>();
 
@@ -15,15 +16,7 @@ public class PeliManageri {
     public PeliManageri(){
 
     }
-    public boolean kotipesatTaynna(){
-        for(int i =0; i<4; i++){
-            if(!pelaajaLista.get(i).kotipesaTaysi()) {
-                return false;
-            }
-        }
-        return true;
 
-    }
     public int roll() {
         return noppa.nextInt(6)+1;
     }
@@ -31,6 +24,7 @@ public class PeliManageri {
     public Pelaaja getPelaaja(int indeksi) {
         return pelaajaLista.get(indeksi);
     }
+
     public ArrayList<Pelaaja> getpelaajaLista(){
         return pelaajaLista;
     }
@@ -42,9 +36,6 @@ public class PeliManageri {
     public int[] getCoordinates(int ruutu){
         return koordinaatit.get(ruutu);
 
-    }
-    public void setCoordinates(HashMap koordinaatit){
-        this.koordinaatit = koordinaatit;
     }
 
     public void addCoordinate(int ruutu, int[] koord){

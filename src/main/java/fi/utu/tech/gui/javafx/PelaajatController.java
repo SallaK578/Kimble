@@ -6,17 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.HashMap;
+
 
 public class PelaajatController {
 
@@ -35,19 +29,7 @@ public class PelaajatController {
     private TextField keltainen;
 
     @FXML
-    private ChoiceBox<?> maaradrop;
-
-    @FXML
-    private Button valmis;
-    @FXML
-    private BorderPane bp;
-    @FXML
-    private HBox alaboksi1;
-    @FXML
     private Label ohje1;
-
-
-    public GameBoard gb;
 
     public PelaajatController(){
 
@@ -97,20 +79,13 @@ public class PelaajatController {
 
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
-                //gb = new GameBoard();
-                //this.u = u;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("kimble.fxml")
-                );
-
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("kimble.fxml"));
 
                 Parent root = loader.load();
 
                 GameBoard controller = loader.getController();
                 controller.setPeliManageri(u);
                 loader.setController(controller);
-
-
-                //BorderPane gbPane = loader.load();
 
                 Scene scene = new Scene(root);
                 scene.getStylesheets().addAll(this.getClass().getResource("styles.css").toExternalForm());//asetetaan tyyli
@@ -131,7 +106,7 @@ public class PelaajatController {
     }
 
     public void initCoord() {
-        //Vähän kökkö, mutta tallennetaan normi peliruutujen GridPane koordinaatit PeliManageriin (hashmappiin),
+        //Tallennetaan normi peliruutujen GridPane koordinaatit PeliManageriin (hashmappiin),
         //josta ne ovat haettavissa ruudun numerolla, kun pitää liikkua
         //Pysyy vakiona
         if (this.u != null) {

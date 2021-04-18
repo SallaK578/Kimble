@@ -1,6 +1,5 @@
 package fi.utu.tech.gui.javafx;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,18 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 
 public class GameBoard {
     public Scene scene;
-    @FXML
-    private BorderPane gbPane;
 
     @FXML
     private GridPane gridPane;
@@ -64,17 +59,8 @@ public class GameBoard {
 
     @FXML
         //liikutettavan nappulan valinta
-
     void liikutaBtn(ActionEvent event) {
-        //jos nappula kotipesässä ja noppa 6 liikutetaan värikohtaiseen aloitusruutuun
-        // switch (true) {
-        /*if (onkoKotip((Button) event.getSource()) && nopanTulos == 6 && voiko1Liikkua(liikutettava((Button) event.getSource()))){
 
-                ensimmäinenNappula((Button) event.getSource());
-                ohjeLabel.setText(getOhje(6));
-                System.out.println("kotipesästä liikutus ");
-
-            }*/
             //jos nappula kotipesässä, mutta noppa EI 6
             if (onkoKotip((Button) event.getSource()) && nopanTulos != 6) {
                 ohjeLabel.setText(getOhje(5));
@@ -96,10 +82,7 @@ public class GameBoard {
             //jos nappulaa ei voi liikuttaa
             else if (voiko1Liikkua(liikutettava((Button) event.getSource())) == false) {
                 ohjeLabel.setText(getOhje(5));
-
             }
-
-
 
         }
 
@@ -117,7 +100,6 @@ public class GameBoard {
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("quit.fxml")
             );
-
 
             Parent root = loader.load();
 
@@ -296,9 +278,7 @@ public class GameBoard {
             }
         }else{
 
-                // jos maalialueella, liikutetaan siellä
-                	//siirretään maalialueella
-
+            // jos maalialueella, liikutetaan siellä
             for (int i = 1; i <= 4 ; i++) {
                 if (pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[i-1].equals(liikutettava(btn)) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[(i+nopanTulos)-1] == null) {
                     System.out.println("Liikutetaan maalialueella ruudusta: " + i  + "ruutuun " + (i+nopanTulos));
@@ -344,7 +324,7 @@ public class GameBoard {
     }
 
 
-    //liikutaan maalialueelle/a
+    //liikutaan maalialueelle
     public void maaliSiirto(Button btn, int ruutu){
     	System.out.println("maaliin siirtyminen ruutuun:  " + ruutu);
 
@@ -370,7 +350,7 @@ public class GameBoard {
 
     }
 
-    //liikutaan laudalla uusi => ruutuina
+    //liikutaan laudalla (uusi => ruutuina, ei indeksi)
     public void normiSiirto(Button btn, int uusi){
         //poistetaan gridpanelta
         gridPane.getChildren().remove(btn);
@@ -378,7 +358,6 @@ public class GameBoard {
         peliLauta.set(peliLauta.indexOf(liikutettava(btn)), null);
 
         //lisätään gridpane
-        //OBS lisätty uusi +1
         gridPane.add(btn, pm.koordinaatit.get(uusi)[0], pm.koordinaatit.get(uusi)[1]);
         System.out.println("koordinaatit: " + pm.koordinaatit.get(uusi)[0] +" " + pm.koordinaatit.get(uusi)[1]);
         //lisätään arraylistiin
@@ -402,15 +381,15 @@ public class GameBoard {
         //Käydään pelaajan nappulat läpi
         for (int k = 0; k < 4; k++) {
             //testataan voiko nappula liikkua
-            // jos yksikin voi, palauttaa true
+            //jos yksikin voi, palauttaa true
             if(voiko1Liikkua(pm.getPelaaja(vuoroLaskuri).getNappulat()[k])){
                 return true;
             }
         }
         return false;
-        
 
     }
+
     public boolean voiko1Liikkua(Nappula n){
         //Onko kyseinen nappula laudalla
         if(peliLauta.contains(n)){
@@ -441,7 +420,7 @@ public class GameBoard {
                 }
             }
         }
-        // jos maalialueella, voiko liikkua siellä?
+        //jos maalialueella, voiko liikkua siellä?
         try{
             for(int j = 0; j < 4; j++){
                 if(pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j] != null && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j].equals(n) && pm.getPelaaja(vuoroLaskuri).getMaaliAlue()[j+nopanTulos] == null){
@@ -451,7 +430,7 @@ public class GameBoard {
         }catch(IndexOutOfBoundsException e){
             return false;
         }
-        // jos kotipesässä, voiko liikkua sieltä?
+        //jos kotipesässä, voiko liikkua sieltä?
         for(int j = 0; j<4;j++){
             if(pm.getPelaaja(vuoroLaskuri).getKotiPesa()[j] != null && pm.getPelaaja(vuoroLaskuri).getKotiPesa()[j].equals(n) && nopanTulos ==6){
                 switch(vuoroLaskuri){
@@ -582,7 +561,6 @@ public class GameBoard {
         }
         //poistetaan aloitusnappi
         gridPane.getChildren().remove(this.aloita);
-
         skipBtn.setDisable(false);
         rageBtn.setDisable(false);
         noppa.setDisable(false);
@@ -604,8 +582,7 @@ public class GameBoard {
 
             Node node = (Node) btn;
             Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("voitto.fxml")
-            );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("voitto.fxml"));
 
             Parent root = loader.load();
 

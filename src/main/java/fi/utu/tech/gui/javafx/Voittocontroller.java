@@ -25,9 +25,7 @@ public class Voittocontroller {
 
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("nimet.fxml")
-            );
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("nimet.fxml"));
 
             Parent root = loader.load();
 
