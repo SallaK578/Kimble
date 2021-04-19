@@ -11,7 +11,7 @@
 
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.utu.tech.gui.javafx.PelaajatController">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.utu.tech.gui.javafx.PelaajatController">
    <center>
       <GridPane alignment="CENTER" hgap="10.0" prefHeight="254.0" prefWidth="532.0" vgap="20.0" BorderPane.alignment="CENTER">
         <columnConstraints>
