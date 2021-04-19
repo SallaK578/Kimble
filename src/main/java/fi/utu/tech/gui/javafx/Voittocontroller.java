@@ -35,7 +35,8 @@ public class Voittocontroller {
 
             Scene scene = new Scene(root);
             scene.getStylesheets().addAll(this.getClass().getResource("styles.css").toExternalForm());//asetetaan tyyli
-
+            stage.setWidth(630);
+            stage.setHeight(700);
             stage.setScene(scene);
             stage.show();
 

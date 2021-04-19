@@ -32,7 +32,8 @@ public class quitController {
 
             Scene scene = new Scene(root);
             scene.getStylesheets().addAll(this.getClass().getResource("styles.css").toExternalForm());
-
+            stage.setWidth(630);
+            stage.setHeight(700);
             stage.setScene(scene);
             stage.show();
 
